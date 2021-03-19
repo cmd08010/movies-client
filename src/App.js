@@ -9,6 +9,9 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import MovieIndex from './components/routes/MovieIndex'
+import MovieCreate from './components/routes/MovieCreate'
+import MovieShow from './components/routes/MovieShow'
 
 class App extends Component {
   constructor (props) {
@@ -64,6 +67,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/movies' render={() => (
+            <MovieIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/movies-create' render={() => (
+            <MovieCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/movies/:id' render={(props) => (
+            <MovieShow msgAlert={this.msgAlert} user={user} props={props} />
           )} />
         </main>
       </Fragment>
